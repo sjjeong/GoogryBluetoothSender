@@ -18,15 +18,15 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseFragment extends Fragment {
-    private Unbinder mUnbinder;
-    private ViewDataBinding mBinding;
+    private Unbinder unbinder;
+    private ViewDataBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
-        View rootView = mBinding.getRoot();
-        mUnbinder = ButterKnife.bind(this, rootView);
+        binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
+        View rootView = binding.getRoot();
+        unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -38,12 +38,12 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        mUnbinder.unbind();
+        unbinder.unbind();
         super.onDestroyView();
     }
 
     public ViewDataBinding getDataBinding() {
-        return mBinding;
+        return binding;
     }
 
     @LayoutRes

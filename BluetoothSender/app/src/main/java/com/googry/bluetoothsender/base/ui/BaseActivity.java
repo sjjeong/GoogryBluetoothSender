@@ -15,22 +15,22 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
-    private Unbinder mUnbinder;
-    private Fragment mFragment;
+    private Unbinder unbinder;
+    private Fragment fragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setLayoutId());
-        mUnbinder = ButterKnife.bind(this);
-        mFragment = getSupportFragmentManager()
+        unbinder = ButterKnife.bind(this);
+        fragment = getSupportFragmentManager()
                 .findFragmentById(setFragmentContentId());
-        if (mFragment == null) {
-            mFragment = setFragment();
+        if (fragment == null) {
+            fragment = setFragment();
             FragmentTransaction transaction =
                     getSupportFragmentManager()
                             .beginTransaction();
-            transaction.add(setFragmentContentId(), mFragment);
+            transaction.add(setFragmentContentId(), fragment);
             transaction.commit();
         }
         initView();
@@ -38,12 +38,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        mUnbinder.unbind();
+        unbinder.unbind();
         super.onDestroy();
     }
 
     protected Fragment getFragment() {
-        return mFragment;
+        return fragment;
     }
 
     @LayoutRes
