@@ -7,11 +7,11 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.googry.bluetoothsender.common.Constant;
 import com.googry.bluetoothsender.ui.devicesearch.DeviceSearchActivity;
 
-public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_ENABLE_BT = 1;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if(!bluetoothAdapter.isEnabled()){
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+            startActivityForResult(enableIntent, Constant.ActivityRequestCode.REQUEST_ENABLE_BT);
         } else {
             startNextActivity();
         }
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
-            case REQUEST_ENABLE_BT:{
+            case Constant.ActivityRequestCode.REQUEST_ENABLE_BT:{
                 if(resultCode == RESULT_OK){
                     startNextActivity();
                 } else {

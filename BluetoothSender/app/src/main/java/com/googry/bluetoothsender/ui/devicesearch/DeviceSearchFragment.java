@@ -5,10 +5,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.IntentFilter;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.animation.Interpolator;
 
 import com.googry.bluetoothsender.R;
 import com.googry.bluetoothsender.base.ui.BaseFragment;
@@ -17,7 +15,6 @@ import com.googry.bluetoothsender.databinding.DeviceSearchFragBinding;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 import jp.wasabeef.recyclerview.animators.SlideInRightAnimator;
 
 /**
@@ -34,7 +31,6 @@ public class DeviceSearchFragment extends BaseFragment implements DeviceSearchCo
 
     private DeviceSearchContract.Presenter presenter;
 
-    private DeviceSearchFragBinding binding;
 
 
     public static DeviceSearchFragment newInstance(){
@@ -49,7 +45,7 @@ public class DeviceSearchFragment extends BaseFragment implements DeviceSearchCo
     @Override
     public void initView() {
         // set DataBinding
-        binding = (DeviceSearchFragBinding) getDataBinding();
+        DeviceSearchFragBinding binding = (DeviceSearchFragBinding) getDataBinding();
         binding.setPresenter(presenter);
         binding.setAdapter(BluetoothAdapter.getDefaultAdapter());
 
